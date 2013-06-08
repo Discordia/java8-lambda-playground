@@ -12,9 +12,9 @@ public interface Maybe<T> {
 
     @SuppressWarnings("unchecked")
     public default <T,B> Maybe<B> bind(Function<T, Maybe<B>> function) {
-        Just<B> just = Type.as(Just.class, this);
+        Just<T> just = Type.as(Just.class, this);
 
-        return (just == null) ? new Nothing<>() : function.apply((T) just.value());
+        return (just == null) ? new Nothing<>() : function.apply(just.value());
     }
 }
 
